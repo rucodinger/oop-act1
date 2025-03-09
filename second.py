@@ -14,7 +14,7 @@ class Store:
             product.quantity += quantity
             print("Зарегистрирована новая поставка товаров")
 
-    def sell_product(self, name, quantity):
+    def sell_product(self, name, quantity=1):
         products = search(name, self.products)[0]
         if len(products) > 0:
             if products[0].quantity >= quantity:
@@ -43,8 +43,14 @@ class Product:
         self.in_shop = False
 
 store = Store()
+store.get_total_value()
 iphone16pro = Product('iPhone 16 Pro', 999)
+galaxyS25ultra = Product('Samsung Galaxy S25 Ultra', 1199)
 store.add_product(iphone16pro, 10)
+store.add_product(galaxyS25ultra, 3)
+store.add_product(galaxyS25ultra)
 store.sell_product('iPhone 16 Pro', 5)
+store.sell_product('Samsung Galaxy S25 Ultra', 2)
 store.get_stock('iPhone 16 Pro')
+store.get_stock('Samsung Galaxy S25 Ultra')
 store.get_total_value()
