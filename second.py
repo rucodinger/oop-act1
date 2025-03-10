@@ -42,6 +42,15 @@ class Product:
         self.quantity = quantity
         self.in_shop = False
 
+    def __str__(self):
+        val = f"\n{'-' * 5}{self.name}{'-' * 5}\nЦена: {self.price}$\nКол-во на складе: {self.quantity}\n"
+        if self.in_shop:
+            val += "Товар в магазине"
+        else: val += "Товар отсутствует в магазине"
+        val += "\n"
+        val += "-" * (len(self.name) + 10)
+        return val
+
 store = Store()
 store.get_total_value()
 iphone16pro = Product('iPhone 16 Pro', 999)

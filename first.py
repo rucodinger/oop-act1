@@ -30,9 +30,9 @@ class Library:
         books, indices = search(name, self.books)[0], search(name, self.books)[1]
         if len(books) == 0:
             print("Книг с таким названием не найдено\n")
-        else:
-            for i in sorted(indices, reverse=True):
-                del self.books[i]
+            return
+        for i in sorted(indices, reverse=True):
+            del self.books[i]
 
     def borrow_book(self, name):
         books, indices = search(name, self.books)[0], search(name, self.books)[1]
@@ -58,12 +58,25 @@ class Book:
         self.is_available = True
         self.is_in_library = False
 
+    def __str__(self):
+        val = f"\n{'-' * 5}{self.name}{'-' * 5}\nАвтор: {self.author}\nГод написания: {self.year}\n"
+        if self.is_available:
+            val += "Книга доступна"
+        elif not self.is_in_library:
+            val += "Книга отсутствует"
+        else:
+            val += "Книга взята"
+        val += "\n"
+        val += "-" * (len(self.name) + 10)
+        return val
+
 
 lib = Library()
 book = Book("Book", "Author", 1999)
-book1 = Book("Book1", "er", 1876)
-lib.add_book(book)
-lib.add_book(book1)
-lib.find_book("Book")
-lib.borrow_book("Book")
-lib.find_book("Book")
+# book1 = Book("Book1", "er", 1876)
+# lib.add_book(book)
+# lib.add_book(book1)
+# lib.find_book("Book")
+# lib.borrow_book("Book")
+# lib.find_book("Book")
+print(book)
