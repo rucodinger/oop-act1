@@ -33,7 +33,7 @@ class Store:
         total = 0
         for product in self.products:
             total += product.price * product.quantity
-        print(f"Общая стоимость всех товаров на складе - {total}₽")
+        print(f"Общая стоимость всех товаров на складе - {total}$")
 
 class Product:
     def __init__(self, name, price, quantity=0):
